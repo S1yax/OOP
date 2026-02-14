@@ -6,7 +6,10 @@ public class task3 {
 		int a;
 		System.out.print("Enter your grade:");
 		a=input.nextInt();
-		if(95<=a && a<=100) {
+		if(a>0 && a>100) {
+			System.out.print("Your grade does not exist");
+		}
+		else if(95<=a && a<=100) {
 			System.out.println("Your grade" + " A");
 		}else if(90<=a  && a<=94) {
 			System.out.println("Your grade" + " A-");
@@ -38,4 +41,5 @@ public class task3 {
 		else if(a<50) {
 			System.out.println("Your grade" + " F");
 		}
+		
 	}}

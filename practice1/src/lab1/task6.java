@@ -21,7 +21,6 @@ public class task6 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         String str = scan.nextLine();
-
         if (isPalindrome(str)) {
             System.out.println("String is palindrome");
         } else {
