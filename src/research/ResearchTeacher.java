@@ -1,29 +1,20 @@
 package research;
-
 import employees.Teacher;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 public class ResearchTeacher extends Teacher implements Researcher {
-
     private static final long serialVersionUID = 1L;
-
     private List<ResearchPaper> papers = new ArrayList<>();
-
     public ResearchTeacher(String login, String password, String firstName, String lastName) {
         super(login, password, firstName, lastName);
     }
-
-    // ── Researcher interface ───────────────────────────────
     @Override
     public List<ResearchPaper> getPapers() { return papers; }
-
     @Override
     public void addPaper(ResearchPaper paper) { papers.add(paper); }
 
-    // ── Extended Menu ──────────────────────────────────────
     @Override
     public void showMenu() {
         Scanner sc = new Scanner(System.in);

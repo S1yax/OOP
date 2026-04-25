@@ -1,5 +1,4 @@
 package database;
-
 import employees.Manager;
 import employees.Teacher;
 import research.ResearchPaper;
@@ -10,25 +9,17 @@ import users.User;
 
 import java.io.*;
 import java.util.*;
-
-/**
- * Singleton — one central data store for the entire system.
- */
 public class Database implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final String DATA_FILE      = "university_data.ser";
     private static Database instance;
-
     private Map<String, User> users          = new HashMap<>();
     private List<Course> courses             = new ArrayList<>();
     private List<ResearchPaper> papers       = new ArrayList<>();
     private List<ResearchProject> projects   = new ArrayList<>();
     private List<String> logs                = new ArrayList<>();
-
     private Database() {}
-
-    // ── Singleton ──────────────────────────────────────────
     public static Database getInstance() {
         if (instance == null) {
             instance = loadFromFile();
@@ -36,38 +27,51 @@ public class Database implements Serializable {
         }
         return instance;
     }
-
-    // ── Users ──────────────────────────────────────────────
-    public void addUser(User u)                   { users.put(u.getLogin(), u); }
-    public User getUserByLogin(String login)       { return users.get(login); }
-    public Collection<User> getAllUsers()          { return users.values(); }
+    public void addUser(User u) {
+         users.put(u.getLogin(), u);
+         }
+    public User getUserByLogin(String login){
+         return users.get(login);
+         }
+    public Collection<User> getAllUsers() {
+         return users.values();
+         }
 
     public User authenticate(String login, String password) {
         User u = users.get(login);
         if (u != null && u.getPassword().equals(password)) return u;
         return null;
     }
+    public void addCourse(Course c){
+         courses.add(c);
+         }
+    public List<Course> getCourses(){
+         return courses; 
 
-    // ── Courses ────────────────────────────────────────────
-    public void addCourse(Course c)                { courses.add(c); }
-    public List<Course> getCourses()               { return courses; }
+    }
     public Course getCourseById(String id) {
         return courses.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
     }
+    public void addPaper(ResearchPaper p) { 
+        papers.add(p);
+     }
+    public List<ResearchPaper> getPapers(){
+         return papers;
+         }
+    public void addProject(ResearchProject p) {
+         projects.add(p);
+         }
+    public List<ResearchProject> getProjects() {
+         return projects; 
+        }
 
-    // ── Research ───────────────────────────────────────────
-    public void addPaper(ResearchPaper p)          { papers.add(p); }
-    public List<ResearchPaper> getPapers()         { return papers; }
-    public void addProject(ResearchProject p)      { projects.add(p); }
-    public List<ResearchProject> getProjects()     { return projects; }
-
-    // ── Logs ───────────────────────────────────────────────
+   
     public void log(String message) {
         logs.add("[" + new Date() + "] " + message);
     }
     public List<String> getLogs() { return Collections.unmodifiableList(logs); }
 
-    // ── Persistence ────────────────────────────────────────
+   
     public void save() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
             oos.writeObject(this);
@@ -87,22 +91,23 @@ public class Database implements Serializable {
         }
     }
 
-    // ── Seed demo data ─────────────────────────────────────
     public void seedDemoData() {
         if (!users.isEmpty()) return;
 
         Admin admin = new Admin("admin", "admin123", "System", "Admin");
         addUser(admin);
 
-        Teacher t1 = new Teacher("jsmith", "pass123", "John", "Smith");
-        Teacher t2 = new Teacher("adoe",   "pass123", "Alice", "Doe");
+        Teacher t1 = new Teacher("arman", "pass123", "Arman", "Myrzakanurov");
+        Teacher t2 = new Teacher("miras", "pass123", "Miras", "Asubay");
         addUser(t1); addUser(t2);
 
-        Student s1 = new Student("bob", "pass123", "Bob", "Brown", "SE-2101");
-        Student s2 = new Student("eva", "pass123", "Eva", "Green", "CS-2201");
-        addUser(s1); addUser(s2);
+        Student s1 = new Student("saniya",   "pass123", "Saniya",   "Niyazkhan",  "SE-2101");
+        Student s2 = new Student("edige",    "pass123", "Edige",    "Sayak",      "CS-2201");
+        Student s3 = new Student("nurasyl",  "pass123", "Mustafaev","Nurasyl",    "SE-2102");
+        Student s4 = new Student("orkenbek", "pass123", "Mustafa",  "Orkenbek",   "CS-2202");
+        addUser(s1); addUser(s2); addUser(s3); addUser(s4);
 
-        Manager mgr = new Manager("carol", "pass123", "Carol", "White");
+        Manager mgr = new Manager("", "pass123", "Asel", "Askarova");
         addUser(mgr);
 
         Course oop  = new Course("CS101", "Object-Oriented Programming", 5, t1);

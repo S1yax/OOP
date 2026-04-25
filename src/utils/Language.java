@@ -1,9 +1,4 @@
 package utils;
-
-/**
- * Supported UI languages.
- * KZ = Kazakh, EN = English, RU = Russian
- */
 public enum Language {
     KZ("Қазақша"),
     EN("English"),

@@ -22,11 +22,21 @@ public class Lesson implements Serializable {
         this.room      = room;
     }
 
-    public String getSubject()   { return subject; }
-    public LessonType getType()  { return type; }
-    public String getDayOfWeek() { return dayOfWeek; }
-    public String getTime()      { return time; }
-    public String getRoom()      { return room; }
+    public String getSubject(){
+         return subject;
+         }
+    public LessonType getType()  {
+         return type;
+         }
+    public String getDayOfWeek() {
+         return dayOfWeek;
+         }
+    public String getTime(){ 
+        return time;
+     }
+    public String getRoom(){
+         return room;
+         }
 
     @Override
     public String toString() {

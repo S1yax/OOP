@@ -1,17 +1,11 @@
 package research;
-
 import exceptions.LowHIndexException;
 import exceptions.NotAResearcherException;
 import users.User;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents a research project with a supervisor and team members.
- * Enforces h-index requirement for the supervisor.
- */
 public class ResearchProject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,10 +37,18 @@ public class ResearchProject implements Serializable {
 
     public void addPaper(ResearchPaper p) { projectPapers.add(p); }
 
-    public String getName()                  { return name; }
-    public Researcher getSupervisor()        { return supervisor; }
-    public List<Researcher> getMembers()     { return members; }
-    public List<ResearchPaper> getPapers()   { return projectPapers; }
+    public String getName(){
+         return name; 
+        }
+    public Researcher getSupervisor()  { 
+        return supervisor; 
+    }
+    public List<Researcher> getMembers() {
+         return members; 
+        }
+    public List<ResearchPaper> getPapers()  {
+         return projectPapers;
+         }
 
     @Override
     public String toString() {

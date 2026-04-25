@@ -1,6 +1,4 @@
 package Main;
-
-
 import communication.News;
 import communication.NewsBoard;
 import database.Database;
@@ -8,15 +6,11 @@ import research.ResearchPaper;
 import research.Researcher;
 import users.User;
 import utils.InputUtils;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
 public class Main {
-
     private static final NewsBoard newsBoard = new NewsBoard();
-
     public static void main(String[] args) {
         Database db = Database.getInstance();
         db.seedDemoData();
@@ -27,13 +21,13 @@ public class Main {
         boolean appRunning = true;
         while (appRunning) {
             System.out.println("\n╔══════════════════════════════════════╗");
-            System.out.println("║   UNIVERSITY INFORMATION SYSTEM      ║");
-            System.out.println("╠══════════════════════════════════════╣");
-            System.out.println("║  1. Login                            ║");
-            System.out.println("║  2. View news board                  ║");
-            System.out.println("║  3. View top researcher              ║");
-            System.out.println("║  0. Exit                             ║");
-            System.out.println("╚══════════════════════════════════════╝");
+            System.out.println("║   UNIVERSITY INFORMATION SYSTEM :3     ║");
+            System.out.println("╠════════════════════════════════════════╣");
+            System.out.println("║  1. Login                              ║");
+            System.out.println("║  2. View news board                    ║");
+            System.out.println("║  3. View top researcher                ║");
+            System.out.println("║  0. Exit                               ║");
+            System.out.println("╚════════════════════════════════════════╝");
 
             String choice = InputUtils.readLine("Choice: ");
             switch (choice) {
@@ -65,12 +59,8 @@ public class Main {
 
         System.out.println("✓ Welcome, " + user.getFullName() + "! (" + user.getClass().getSimpleName() + ")");
         db.log("User [" + login + "] logged in as " + user.getClass().getSimpleName());
-
-        // Polymorphic dispatch — each user type has its own menu
         user.showMenu();
     }
-
-    // ── Top Researcher ─────────────────────────────────────
     private static void showTopResearcher(Database db) {
         Optional<User> top = db.getAllUsers().stream()
                 .filter(u -> u instanceof Researcher)
@@ -86,7 +76,6 @@ public class Main {
         }, () -> System.out.println("No researchers found in the system."));
     }
 
-    // ── Helpers ────────────────────────────────────────────
     private static void postInitialNews(Database db) {
         newsBoard.post(new News(
                 "Welcome to the University System",
@@ -102,17 +91,19 @@ public class Main {
 
     private static void printWelcomeBanner() {
         System.out.println("""
-                ╔══════════════════════════════════════════════╗
-                ║     UNIVERSITY INFORMATION SYSTEM v1.0       ║
-                ║     OOP Project — Java                       ║
-                ╚══════════════════════════════════════════════╝
+                ╔════════════════════════════════════════════╗
+                ║   UNIVERSITY INFORMATION SYSTEM v1.0       ║
+                ║   OOP Project — Java                       ║
+                ╚════════════════════════════════════════════╝
                   Default accounts:
-                    admin     / admin123
-                    jsmith    / pass123  (Teacher)
-                    adoe      / pass123  (Teacher)
-                    bob       / pass123  (Student)
-                    eva       / pass123  (Student)
-                    carol     / pass123  (Manager)
+                    admin      admin123
+                    arman      pass123  (Teacher)
+                    miras      pass123  (Teacher)
+                    saniya     pass123  (Student)
+                    edige      pass123  (Student)
+                    nurasyl    pass123  (Student)
+                    orkenbek   pass123  (Student)
+                    asel       pass123  (Manager)
                 """);
     }
 }

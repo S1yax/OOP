@@ -1,9 +1,6 @@
 package research;
-
 import users.User;
-
 import java.io.Serializable;
-
 public class ResearchPaper implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +17,7 @@ public class ResearchPaper implements Serializable {
         this.title     = title;
         this.year      = year;
         this.citations = citations;
-        this.pages     = 10; // default
+        this.pages     = 10; 
         this.author    = author;
     }
 
@@ -28,8 +25,6 @@ public class ResearchPaper implements Serializable {
         this(title, year, citations, author);
         this.pages = pages;
     }
-
-    // ── Citation ───────────────────────────────────────────
     public String getCitation(Format f) {
         if (f == Format.BIBTEX) {
             return String.format(
@@ -37,18 +32,27 @@ public class ResearchPaper implements Serializable {
                     author.getLastName().toLowerCase(), year,
                     author.getFullName(), title, year, citations);
         }
-        // Plain text default
         return String.format("%s. \"%s\". %d. (Cited %d times, %d pages)",
                 author.getFullName(), title, year, citations, pages);
     }
-
-    // ── Getters / Setters ──────────────────────────────────
-    public String getTitle()      { return title; }
-    public int getYear()          { return year; }
-    public int getCitations()     { return citations; }
-    public void setCitations(int c) { this.citations = c; }
-    public int getPages()         { return pages; }
-    public User getAuthor()       { return author; }
+    public String getTitle()      {
+         return title; 
+        }
+    public int getYear() {
+         return year; 
+        }
+    public int getCitations() { 
+        return citations; 
+    }
+    public void setCitations(int c) {
+         this.citations = c; 
+        }
+    public int getPages() {
+         return pages;
+         }
+    public User getAuthor() { 
+        return author;
+     }
 
     @Override
     public String toString() {

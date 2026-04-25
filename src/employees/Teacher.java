@@ -1,10 +1,8 @@
 package employees;
-
 import database.Course;
 import database.Database;
 import students.Student;
 import users.Mark;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -22,13 +20,11 @@ public class Teacher extends Employee {
                 .filter(c -> c.getInstructor().getLogin().equals(this.getLogin()))
                 .collect(Collectors.toList());
     }
-
     @Override
     public void showMenu() {
         Scanner sc = new Scanner(System.in);
         Database db = Database.getInstance();
         boolean running = true;
-
         while (running) {
             System.out.println("\n=== TEACHER MENU — " + getFullName() + " ===");
             System.out.println("1. View my courses");

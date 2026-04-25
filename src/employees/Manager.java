@@ -1,5 +1,4 @@
 package employees;
-
 import database.Course;
 import database.Database;
 import database.Lesson;
@@ -71,7 +70,6 @@ public class Manager extends Employee {
         db.log("Manager added course: " + id);
         System.out.println("Course added: " + c);
     }
-
     private void addLesson(Scanner sc, Database db) {
         System.out.print("Course ID: "); String cid = sc.nextLine().trim();
         Course c = db.getCourseById(cid);
@@ -111,7 +109,6 @@ public class Manager extends Employee {
             System.out.println("Student already enrolled.");
         }
     }
-
     private void removeStudent(Scanner sc, Database db) {
         System.out.print("Student login: "); String sLogin = sc.nextLine().trim();
         System.out.print("Course ID: ");     String cid    = sc.nextLine().trim();

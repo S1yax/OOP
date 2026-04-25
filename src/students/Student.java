@@ -1,18 +1,11 @@
 package students;
-
 import database.Course;
 import database.Database;
 import users.Mark;
 import users.User;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-/**
- * Student — can view enrolled courses, grades, and GPA.
- * Maximum enrollment: 21 credits per semester.
- */
 public class Student extends User {
 
     private static final long serialVersionUID = 1L;
@@ -25,12 +18,6 @@ public class Student extends User {
         this.group       = group;
         this.yearOfStudy = 1;
     }
-
-    // ── Credits ────────────────────────────────────────────
-    /**
-     * Sums credits of all courses the student is enrolled in.
-     * Used by Manager to enforce the 21-credit cap.
-     */
     public int getTotalCredits(Database db) {
         return db.getCourses().stream()
                 .filter(c -> c.isEnrolled(this))
@@ -44,7 +31,6 @@ public class Student extends User {
                 .collect(Collectors.toList());
     }
 
-    // ── GPA ────────────────────────────────────────────────
     public double getGPA(Database db) {
         List<Course> courses = getEnrolledCourses(db);
         if (courses.isEmpty()) return 0.0;
@@ -57,7 +43,6 @@ public class Student extends User {
         return count == 0 ? 0.0 : total / count;
     }
 
-    // ── Menu ───────────────────────────────────────────────
     @Override
     public void showMenu() {
         Scanner sc = new Scanner(System.in);
@@ -122,7 +107,6 @@ public class Student extends User {
         });
     }
 
-    // ── Getters ────────────────────────────────────────────
     public String getGroup()          { return group; }
     public int getYearOfStudy()       { return yearOfStudy; }
     public void setYearOfStudy(int y) { this.yearOfStudy = y; }

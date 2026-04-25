@@ -5,7 +5,6 @@ public interface GradeStrategy {
     String getStrategyName();
 }
 
-// ── Concrete Strategy 1: Standard Letter Grade ─────────────
 class LetterGradeStrategy implements GradeStrategy {
     @Override
     public String evaluate(Mark mark) {
@@ -13,10 +12,11 @@ class LetterGradeStrategy implements GradeStrategy {
                 mark.getTotal(), mark.getLetterGrade(),
                 mark.isPassed() ? "PASSED" : "FAILED");
     }
-    @Override public String getStrategyName() { return "Letter Grade (A/B/C/D/F)"; }
+    @Override public String getStrategyName() { 
+        return "Letter Grade (A/B/C/D/F)"; 
+    }
 }
 
-// ── Concrete Strategy 2: GPA 4.0 Scale ─────────────────────
 class GPAStrategy implements GradeStrategy {
     @Override
     public String evaluate(Mark mark) {
@@ -27,28 +27,40 @@ class GPAStrategy implements GradeStrategy {
     @Override public String getStrategyName() { return "GPA 4.0 Scale"; }
 }
 
-// ── Concrete Strategy 3: Pass/Fail ─────────────────────────
 class PassFailStrategy implements GradeStrategy {
     @Override
     public String evaluate(Mark mark) {
         return "Result: " + (mark.isPassed() ? "✓ PASS" : "✗ FAIL")
                 + " (score: " + String.format("%.1f", mark.getTotal()) + ")";
     }
-    @Override public String getStrategyName() { return "Pass / Fail"; }
+    @Override public String getStrategyName() {
+         return "Pass / Fail";
+         }
 }
 
-// ── Context class ───────────────────────────────────────────
 class GradeEvaluator {
     private GradeStrategy strategy;
 
-    public GradeEvaluator(GradeStrategy strategy) { this.strategy = strategy; }
-    public void setStrategy(GradeStrategy strategy) { this.strategy = strategy; }
-    public String evaluate(Mark mark) { return strategy.evaluate(mark); }
-    public String currentStrategy()  { return strategy.getStrategyName(); }
-
-    // Factory helpers
-    public static GradeEvaluator letterGrade() { return new GradeEvaluator(new LetterGradeStrategy()); }
-    public static GradeEvaluator gpa()         { return new GradeEvaluator(new GPAStrategy()); }
-    public static GradeEvaluator passFail()    { return new GradeEvaluator(new PassFailStrategy()); }
+    public GradeEvaluator(GradeStrategy strategy) {
+         this.strategy = strategy;
+         }
+    public void setStrategy(GradeStrategy strategy) {
+         this.strategy = strategy;
+         }
+    public String evaluate(Mark mark) { 
+        return strategy.evaluate(mark); 
+    }
+    public String currentStrategy()  { 
+        return strategy.getStrategyName(); 
+    }
+    public static GradeEvaluator letterGrade() { 
+        return new GradeEvaluator(new LetterGradeStrategy()); 
+    }
+    public static GradeEvaluator gpa() {
+         return new GradeEvaluator(new GPAStrategy());
+         }
+    public static GradeEvaluator passFail(){
+         return new GradeEvaluator(new PassFailStrategy());
+         }
 }
 
