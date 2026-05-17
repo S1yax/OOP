@@ -1,13 +1,9 @@
 package communication;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-/**
- * Simple news/notification system for the university.
- * Admin and system events post news; users can read them.
- */
+//Simple news/notification system for the university. Also only admins can post news, but everyone can read them. Each news item has a title, content, author, and timestamp.
+ 
 public class News implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,10 +20,17 @@ public class News implements Serializable {
         this.date    = new Date();
     }
 
-	public String getTitle()   { return title; }
-    public String getContent() { return content; }
-    public String getAuthor()  { return author; }
-    public Date getDate()      { return date; }
+	public String getTitle(){
+         return title; 
+    }
+    public String getContent(){
+         return content; }
+    public String getAuthor() {
+         return author; 
+        }
+    public Date getDate(){
+         return date;
+         }
 
     @Override
     public String toString() {

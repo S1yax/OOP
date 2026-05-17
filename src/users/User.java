@@ -1,7 +1,7 @@
 package users;
 
 import java.io.Serializable;
-
+//Саня
 public abstract class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,13 +18,26 @@ public abstract class User implements Serializable {
         this.lastName  = lastName;
     }
 
-    public String getLogin()    { return login; }
-    public String getPassword() { return password; }
-    public void setPassword(String p) { this.password = p; }
+    public String getLogin() {
+         return login; 
+        }
+    public String getPassword() { 
+        return password; 
+    }
+    public void setPassword(String p) 
+    { this.password = p;
 
-    public String getFirstName() { return firstName; }
-    public String getLastName()  { return lastName; }
-    public String getFullName()  { return firstName + " " + lastName; }
+     }
+
+    public String getFirstName() {
+         return firstName; 
+        }
+    public String getLastName(){
+         return lastName;
+         }
+    public String getFullName(){
+         return firstName + " " + lastName;
+         }
 
     public abstract void showMenu();
 

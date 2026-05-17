@@ -1,5 +1,7 @@
 package users;
+
 import java.io.Serializable;
+//Едиге
 public class Mark implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,16 +18,26 @@ public class Mark implements Serializable {
         this.finalExam    = clamp(fin, 0, 40);
     }
 
-    public void setAttestation1(double v) { attestation1 = clamp(v, 0, 30); }
-    public void setAttestation2(double v) { attestation2 = clamp(v, 0, 30); }
-    public void setFinalExam(double v)    { finalExam    = clamp(v, 0, 40); }
+    public void setAttestation1(double v) {
+         attestation1 = clamp(v, 0, 30);
+         }
+    public void setAttestation2(double v) {
+         attestation2 = clamp(v, 0, 30); 
+        }
+    public void setFinalExam(double v)  { 
+        finalExam    = clamp(v, 0, 40); 
+    }
 
-    public double getAttestation1() { return attestation1; }
-    public double getAttestation2() { return attestation2; }
-    public double getFinalExam()    { return finalExam; }
-
+    public double getAttestation1() {
+        return attestation1;
+    }
+    public double getAttestation2() {
+         return attestation2; 
+        }
+    public double getFinalExam() {
+        return finalExam; 
+    }
     public double getTotal() { return attestation1 + attestation2 + finalExam; }
-
     public String getLetterGrade() {
         double t = getTotal();
         if (t >= 90) return "A";

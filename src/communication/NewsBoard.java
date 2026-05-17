@@ -12,7 +12,7 @@ public class NewsBoard implements Serializable {
     private List<News> newsList = new ArrayList<>();
 
     public void post(News news) {
-        newsList.add(0, news); // newest first
+        newsList.add(0, news); //чем новость свежее, тем выше она в списке
     }
 
     public void postTopCitedResearcher(String name, int hIndex) {

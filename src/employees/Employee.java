@@ -1,5 +1,7 @@
 package employees;
+
 import users.User;
+
 public abstract class Employee extends User {
 
     private static final long serialVersionUID = 1L;
@@ -13,16 +15,16 @@ public abstract class Employee extends User {
         this.salary     = 0.0;
     }
 
-    public String getDepartment() { 
-        return department; 
-    }
-    public void setDepartment(String d) { 
-        this.department = d; 
-    }
-    public double getSalary(){
-         return salary;
+    public String getDepartment(){ 
+        return department;
+     }
+    public void setDepartment(String d) {
+         this.department = d; 
         }
-    public void setSalary(double s) {
-         this.salary = s;
-         }
+    public double getSalary() {
+         return salary; 
+        }
+    public void setSalary(double s)  {
+         this.salary = s; 
+        }
 }

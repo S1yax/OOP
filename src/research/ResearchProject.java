@@ -1,17 +1,14 @@
 package research;
 import exceptions.LowHIndexException;
 import exceptions.NotAResearcherException;
-import users.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+import users.User;
+//Сания
 public class ResearchProject implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     private static final int MIN_SUPERVISOR_H_INDEX = 3;
-
     private String name;
     private Researcher supervisor;
     private List<Researcher> members = new ArrayList<>();
@@ -37,18 +34,19 @@ public class ResearchProject implements Serializable {
 
     public void addPaper(ResearchPaper p) { projectPapers.add(p); }
 
-    public String getName(){
+    public String getName() {
          return name; 
         }
-    public Researcher getSupervisor()  { 
+    public Researcher getSupervisor() {
         return supervisor; 
     }
     public List<Researcher> getMembers() {
-         return members; 
-        }
-    public List<ResearchPaper> getPapers()  {
-         return projectPapers;
+         return members;
          }
+    public List<ResearchPaper> getPapers()  { 
+        return projectPapers; 
+    }
+
 
     @Override
     public String toString() {

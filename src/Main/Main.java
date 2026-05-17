@@ -1,16 +1,18 @@
 package Main;
+
 import communication.News;
 import communication.NewsBoard;
 import database.Database;
-import research.ResearchPaper;
+import java.util.Comparator;
+import java.util.Optional;
 import research.Researcher;
 import users.User;
 import utils.InputUtils;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+
 public class Main {
+
     private static final NewsBoard newsBoard = new NewsBoard();
+
     public static void main(String[] args) {
         Database db = Database.getInstance();
         db.seedDemoData();
@@ -21,13 +23,13 @@ public class Main {
         boolean appRunning = true;
         while (appRunning) {
             System.out.println("\n╔══════════════════════════════════════╗");
-            System.out.println("║   UNIVERSITY INFORMATION SYSTEM :3     ║");
-            System.out.println("╠════════════════════════════════════════╣");
-            System.out.println("║  1. Login                              ║");
-            System.out.println("║  2. View news board                    ║");
-            System.out.println("║  3. View top researcher                ║");
-            System.out.println("║  0. Exit                               ║");
-            System.out.println("╚════════════════════════════════════════╝");
+            System.out.println("║   UNIVERSITY INFORMATION SYSTEM      ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  1. Login                            ║");
+            System.out.println("║  2. View news board                  ║");
+            System.out.println("║  3. View top researcher              ║");
+            System.out.println("║  0. Exit                             ║");
+            System.out.println("╚══════════════════════════════════════╝");
 
             String choice = InputUtils.readLine("Choice: ");
             switch (choice) {
@@ -39,12 +41,11 @@ public class Main {
                     System.out.println("Goodbye! Data saved.");
                     appRunning = false;
                 }
-                default  -> System.out.println("Invalid option.");
+                default -> System.out.println("Invalid option.");
             }
         }
     }
 
-    // ── Login ──────────────────────────────────────────────
     private static void loginFlow(Database db) {
         System.out.println("\n--- LOGIN ---");
         String login    = InputUtils.readLine("Login:    ");
@@ -61,6 +62,7 @@ public class Main {
         db.log("User [" + login + "] logged in as " + user.getClass().getSimpleName());
         user.showMenu();
     }
+
     private static void showTopResearcher(Database db) {
         Optional<User> top = db.getAllUsers().stream()
                 .filter(u -> u instanceof Researcher)
@@ -70,7 +72,6 @@ public class Main {
             int h = ((Researcher) u).calculateHIndex();
             System.out.println("\n🏆 Top Researcher: " + u.getFullName() + " | h-index: " + h);
             newsBoard.postTopCitedResearcher(u.getFullName(), h);
-
             System.out.println("Papers (sorted by citations):");
             ((Researcher) u).printPapers(Researcher.byCitations());
         }, () -> System.out.println("No researchers found in the system."));
@@ -91,21 +92,19 @@ public class Main {
 
     private static void printWelcomeBanner() {
         System.out.println("""
-                ╔════════════════════════════════════════════╗
-                ║   UNIVERSITY INFORMATION SYSTEM v1.0       ║
-                ║   OOP Project — Java                       ║
-                ╚════════════════════════════════════════════╝
+                ╔══════════════════════════════════════════════╗
+                ║     UNIVERSITY INFORMATION SYSTEM v1.0       ║
+                ║     OOP Project — Java                       ║
+                ╚══════════════════════════════════════════════╝
                   Default accounts:
-                    admin      admin123
-                    arman      pass123  (Teacher)
-                    miras      pass123  (Teacher)
-                    saniya     pass123  (Student)
-                    edige      pass123  (Student)
-                    nurasyl    pass123  (Student)
-                    orkenbek   pass123  (Student)
-                    asel       pass123  (Manager)
+                    admin     / admin123
+                    arman     / pass123  (Teacher)
+                    miras     / pass123  (Teacher)
+                    saniya    / pass123  (Student)
+                    edige     / pass123  (Student)
+                    nurasyl   / pass123  (Student)
+                    orkenbek  / pass123  (Student)
+                    asel      / pass123  (Manager)
                 """);
     }
 }
-
-

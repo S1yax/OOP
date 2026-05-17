@@ -1,14 +1,17 @@
 package research;
+
 import java.util.Comparator;
 import java.util.List;
+//Saniya
 public interface Researcher {
+
     List<ResearchPaper> getPapers();
     void addPaper(ResearchPaper paper);
     default void printPapers(Comparator<ResearchPaper> comparator) {
         List<ResearchPaper> sorted = new java.util.ArrayList<>(getPapers());
         sorted.sort(comparator);
         if (sorted.isEmpty()) {
-            System.out.println("No papers published.");
+            System.out.println("  No papers published.");
         } else {
             sorted.forEach(p -> System.out.println("  " + p));
         }
@@ -27,12 +30,15 @@ public interface Researcher {
         return h;
     }
 
+    //Comparators (ready-made) 
     static Comparator<ResearchPaper> byCitations() {
         return Comparator.comparingInt(ResearchPaper::getCitations).reversed();
     }
+
     static Comparator<ResearchPaper> byYear() {
         return Comparator.comparingInt(ResearchPaper::getYear).reversed();
     }
+
     static Comparator<ResearchPaper> byPages() {
         return Comparator.comparingInt(ResearchPaper::getPages).reversed();
     }
